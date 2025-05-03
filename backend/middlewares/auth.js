@@ -12,10 +12,10 @@ exports.auth = function (req, res, next) {
 
   // try {
     const decoded = jwt.verify(token, process.env.Secret); 
-    console.log('Decoded token:', decoded);  // اطبع محتوى التوكن
+    console.log('Decoded token:', decoded);  
     req.id = decoded.id;
     req.roles = decoded.roles;
-    console.log('User roles:', req.roles);  // اطبع الأدوار
+    console.log('User roles:', req.roles);
     next();
   // } catch (err) {
   //   return res.status(401).json({ status: "fail", message: "Unauthorized: Invalid token" });
