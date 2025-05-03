@@ -10,10 +10,8 @@ duration:Number,
 createdBy: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User'
- },
- createdAt:Date,
- updatedAt:Date,
+ }
 
-});
+},{ timestamps: true });
 
 module.exports = mongoose.model('Exam', examSchema);

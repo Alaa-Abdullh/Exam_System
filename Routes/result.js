@@ -1,9 +1,11 @@
 const express=require('express');
 const router=express.Router();
-const {submitExam}=require('../controllers/Result');
+const {submitExam,getresultstudent}=require('../controllers/Result');
 
 
 router.post('/:examid/submit',submitExam);
+router.get('/:examid/result/:studentid', getresultstudent);
+
 
 
 

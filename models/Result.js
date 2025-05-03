@@ -4,27 +4,25 @@ const resultSchema=mongoose.Schema({
 exam: {
     type:mongoose.Schema.Types.ObjectId,
     ref:'Exam',
-    require:true
+    required:true
 }    ,
 studentid:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'User',
-    require:true
+    required:true
 },
 score:{
     type:Number,
-    require:true
+    required:true
 },
 totalQuestion:{
     type:Number,
-    require:true
+    required:true
 },
 correctAnswer:{
-    type:String,
-    require:true
-},
- createdAt:Date,
- updatedAt:Date,
-});
+    type:Number,
+    required:true
+}
+},{ timestamps: true });
 
 module.exports = mongoose.model('Result', resultSchema);

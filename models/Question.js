@@ -14,9 +14,7 @@ Answer:[String],
 correctAnswer:{
     type:String,
     require:true
-},
- createdAt:Date,
- updatedAt:Date,
-});
+}
+},{ timestamps: true });
 
 module.exports = mongoose.model('Question', questionSchema);
