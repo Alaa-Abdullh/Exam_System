@@ -2,7 +2,6 @@ const joi = require("joi");
 
 exports.validation = (schema) => {
   return (req, res, next) => {
-    // التأكد من أن schema موجودة قبل استخدامها
     if (!schema) {
       return res.status(500).json({ status: "fail", message: "Schema is not provided" });
     }
