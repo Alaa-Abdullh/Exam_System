@@ -18,20 +18,16 @@ exports.save = async (req, res) => {
   try {
     const { username, firstName, lastName, email, password, roles } = req.body;
 
-    // التأكد من وجود جميع الحقول المطلوبة
     if (!username || !firstName || !lastName || !email || !password || !roles) {
       return res.status(400).json({ status: "fail", message: "missing fields" });
     }
 
-    // إذا كان الباسورد مكون من أقل من 6 أحرف
     if (password.length < 6) {
       return res.status(400).json({ status: "fail", message: "Password must be at least 6 characters" });
     }
 
-    // التأكد من أن roles هي مصفوفة، إذا كانت سترينج نحولها لمصفوفة
     const formattedRoles = Array.isArray(roles) ? roles : [roles];
 
-    // إنشاء مستخدم جديد
     const user = await userModel.create({
       username,
       firstName,
@@ -71,7 +67,7 @@ exports.login = async function (req, res) {
   }
 
   // Check if the user has 'admin' role
-  if (!user.roles.includes("admin")) { // تغيير هنا
+  if (!user.roles.includes("admin")) { 
     return res
       .status(403)
       .json({ status: "fail", message: "You are not authorized as an admin" });
@@ -82,7 +78,7 @@ exports.login = async function (req, res) {
     process.env.Secret,
     { expiresIn: '1h' } 
   );
-  console.log(user._id, user.email, user.roles);  // للتأكد من القيم
+  console.log(user._id, user.email, user.roles); 
 
     res.status(200).json({ status: "success", data: { token } });
 };
