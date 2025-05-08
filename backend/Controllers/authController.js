@@ -42,7 +42,6 @@ exports.save = async (req, res) => {
     res.status(400).json({ status: 'fail', message: err.message });
   }
 };
-
 exports.login = async function (req, res) {
   let { email, password } = req.body;
 
@@ -66,19 +65,17 @@ exports.login = async function (req, res) {
       .json({ status: "fail", message: "invalid email or password" });
   }
 
-  // Check if the user has 'admin' role
-  if (!user.roles.includes("admin")) { 
+  if (!user.roles || !['user', 'admin'].includes(user.roles[0])) {
     return res
       .status(403)
-      .json({ status: "fail", message: "You are not authorized as an admin" });
+      .json({ status: "fail", message: "Unauthorized role" });
   }
 
   let token = jwt.sign(
     { id: user._id, email: user.email, roles: user.roles },
     process.env.Secret,
-    { expiresIn: '1h' } 
+    { expiresIn: '1h' }
   );
-  console.log(user._id, user.email, user.roles); 
 
-    res.status(200).json({ status: "success", data: { token } });
+  res.status(200).json({ status: "success", data: { token, role: user.roles[0] } });
 };

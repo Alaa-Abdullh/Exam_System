@@ -12,11 +12,13 @@ exports.auth = function (req, res, next) {
 
   // try {
     const decoded = jwt.verify(token, process.env.Secret); 
-    console.log('Decoded token:', decoded);  
+    if (!decoded.roles.includes('admin')) {
+      return res.status(403).json({ status: 'fail', message: 'You are not authorized as an admin' });
+    }
+    // console.log('Decoded token:', decoded);  
     req.id = decoded.id;
     req.roles = decoded.roles;
-    console.log('User roles:', req.roles);
-    next();
+    // console.log('User roles:', req.roles); 
   // } catch (err) {
   //   return res.status(401).json({ status: "fail", message: "Unauthorized: Invalid token" });
   // }

@@ -5,13 +5,11 @@ const { getAll, save, login } = require("../Controllers/authController");
 const authController = require("../Controllers/authController");
 const {validation} = require("../middlewares/validation"); 
 const  registerSchema  = require("../validation/register.validation");       
-// const examController = require("../Controllers/examController");
 
 router.get("/users", auth, restrictTo("admin"), authController.getAll);
 
 router.post("/register", validation(registerSchema), save);
 router.post("/login", login); 
-// router.post("/admin/login", login);
 
 
 
