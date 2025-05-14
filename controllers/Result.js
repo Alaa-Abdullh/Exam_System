@@ -5,6 +5,7 @@ const Question=require('../models/Question');
 // create exam
 exports.submitExam=async (req,res)=>{
 try{
+
     const examId = req.params.examid;
     const { answers, studentid } = req.body; 
 

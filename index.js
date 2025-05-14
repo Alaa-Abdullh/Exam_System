@@ -1,53 +1,54 @@
-const express=require('express');
-const mongoose=require('mongoose');
-const cors=require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const Exam = require('./models/Exam');
 require('dotenv').config();
 
-const examroutes=require('./Routes/exam');
-const questionroutes=require('./Routes/question');
-const resultroutes=require('./Routes/result');
+// routes
+const usersRouter = require('./Routes/users');
+const examroutes = require('./Routes/exam');
+const questionroutes = require('./Routes/question');
+const resultroutes = require('./Routes/result');
 
-const app=express();
+const app = express();
+
+// Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
-const port = 3000
+// API Routes
+app.use('/api/auth', usersRouter); // Authentication routes
+app.use('/api/exams', examroutes);
+app.use('/api/questions', questionroutes);
+app.use('/api/results', resultroutes);
 
-// connect db mongodb
-mongoose.connect(process.env.MONGO_URI).then(()=>{console.log("mongodb connected :)");
-}).catch((err)=>{console.log("can not connect",err);
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    status: 'fail',
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
 });
 
-
-
-
-app.get('/',async (req,res)=>{
-    res.send('Done Api runnn ')
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    status: 'fail',
+    message: 'Route not found'
+  });
 });
 
-
-
-// not found 
-// app.use((req,res,next)=>{
-//     res.status(404).json({status:'fail',message:'notfound'})
-// })
-
-// error handel middelwear 
-// app.use((err,req,res,next)=>{
-//     console.log(err.stack);
-    
-//     res.status(500).json({status:'fail',message:'error try again'})
-// })
-
-
-
-
-
-// api controller
-app.use('/exams',examroutes);
-app.use('/questions',questionroutes);
-app.use('/results',resultroutes);
-
-app.listen(port,()=>console.log(`server run as port ${port}`));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
