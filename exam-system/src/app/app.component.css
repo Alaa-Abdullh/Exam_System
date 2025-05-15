@@ -1,0 +1,29 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.mdc-drawer {
+  width: 240px;
+  background-color: #f4f4f4;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transform: translateX(-240px);
+  transition: transform 0.3s ease;
+}
+
+.mdc-drawer--open {
+  transform: translateX(0);
+}

@@ -1,0 +1,33 @@
+<div class="exam-list-container">
+  <!-- Exams Section -->
+  <div class="exams-section">
+    <h2>Available Exams</h2>
+    <p>Measure your learning progress with our assessment platform</p>
+
+    <div *ngIf="isLoading" class="loading">
+      Loading exams...
+    </div>
+
+    <div *ngIf="!isLoading && errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage && exams && exams.length > 0" class="exam-grid">
+      <div *ngFor="let exam of exams" class="exam-card">
+        <h3>{{ exam.title }}</h3>
+        <p class="description">Duration: {{ exam.duration }} minutes</p>
+        <button 
+          class="start-exam-btn"
+          [routerLink]="canTakeExam(exam) ? ['/take-exam', exam.id] : null"
+          [disabled]="!canTakeExam(exam)"
+        >
+          {{ canTakeExam(exam) ? 'Start Exam' : 'Already Taken' }}
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading && !errorMessage && exams && exams.length === 0" class="no-exams">
+      No exams available at the moment.
+    </div>
+  </div>
+</div>
