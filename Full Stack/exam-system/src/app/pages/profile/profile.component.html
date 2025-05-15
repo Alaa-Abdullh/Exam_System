@@ -1,9 +1,0 @@
-<div class="profile-container">
-      <h2>Edit Profile</h2>
-      <div *ngIf="authService.currentUser$ | async as user">
-        <p><strong>Name:</strong> {{ user.firstName }} {{ user.lastName }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Role:</strong> {{ user.roles }}</p>
-        <!-- Add form for editing profile here -->
-      </div>
-</div>
