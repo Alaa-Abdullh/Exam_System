@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4 border-0 rounded-4">
+    <div class="card-body text-center">
+      <h2 *ngIf="authService.currentUser$ | async as user" class="mb-3">
+        👋 Welcome, <span class="text-primary">{{ user.firstName }}</span>!
+      </h2>
+      <p class="lead text-muted mb-4">Your personal dashboard for managing exams and results.</p>
+
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm h-100 hover-zoom">
+            <div class="card-body text-center">
+              <i class="fas fa-pen-alt fa-2x text-info mb-3"></i>
+              <h5 class="card-title">Take an Exam</h5>
+              <p class="card-text text-muted">Browse and start available exams.</p>
+              <a routerLink="/student/exams" class="btn btn-info mt-2 w-100">Go to Exams</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example for future section -->
+        <div class="col-md-4 mb-3">
+          <div class="card border-0 shadow-sm h-100 hover-zoom">
+            <div class="card-body text-center">
+              <i class="fas fa-chart-bar fa-2x text-success mb-3"></i>
+              <h5 class="card-title">Your Results</h5>
+              <p class="card-text text-muted">Check how you performed in previous exams.</p>
+              <a routerLink="/student/results" class="btn btn-success mt-2 w-100">View Results</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

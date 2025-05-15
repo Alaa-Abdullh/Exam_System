@@ -1,0 +1,22 @@
+<!-- app.component.html -->
+<div class="app-container">
+  <app-header 
+    *ngIf="authService.isLoggedIn() && showLayout"
+    [menuOpen]="menuOpen" 
+    (toggleMenu)="toggleMenu()"
+    (logout)="logout()">
+  </app-header>
+
+  <div class="main-content">
+    <app-sidebar 
+      *ngIf="authService.isLoggedIn() && showLayout"
+      [sidebarOpen]="sidebarOpen">
+    </app-sidebar>
+
+    <main class="page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer *ngIf="authService.isLoggedIn() && showLayout"></app-footer>
+</div>
