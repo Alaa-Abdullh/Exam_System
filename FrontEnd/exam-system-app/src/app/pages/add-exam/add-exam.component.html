@@ -1,0 +1,36 @@
+<div class="main-wrapper position-relative">
+    <div class="background"></div>
+  
+    <app-header></app-header>
+  
+    <div class="content-section d-flex">
+      <app-sidebar></app-sidebar>
+      
+      <div class="content flex-grow-1">
+        <div class="add-exam-form">
+            <h1 class="add-exam-title">Add Exam</h1>
+            <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="title">Exam Title</label>
+                <input type="text" id="title" formControlName="title" required />
+              </div>
+              <!-- <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" formControlName="description" />
+              </div> -->
+              <div class="form-group">
+                <label for="duration">Duration (minutes)</label>
+                <input type="number" id="duration" formControlName="duration" required />
+              </div>
+              <div class="form-group">
+                <label for="createdBy">Created By (User ID)</label>
+                <input type="text" id="createdBy" formControlName="createdBy" required />
+              </div>
+              <button type="submit">Add Exam</button>
+            </form>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  

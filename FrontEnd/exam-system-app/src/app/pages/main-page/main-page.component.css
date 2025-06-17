@@ -1,0 +1,91 @@
+/* General wrapper for the page */
+/* .main-wrapper {
+  min-height: 100vh;
+  background-color: #e9ecef;
+  position: relative;
+} */
+
+/* Content Section */
+.content-section {
+  height: 100vh;
+  /* min-height: 400px;  */
+  overflow: hidden; 
+  display: block; 
+  background-color: #fff; 
+}
+
+.content-wrapper {
+  display: flex;
+}
+
+.content {
+  margin-left: 150px; /* Same as sidebar width */
+  margin-top: 70px; /* To avoid overlap with header */
+  padding: 40px 20px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.content p a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* Exam Section */
+.exam-section {
+  margin-left: 0;
+  padding: 20px;
+  text-align: center;
+  /* background-color: #fff;  */
+  width: 100%;
+  background-color: #e9ecef;
+}
+
+.section-clear {
+  clear: both; 
+  margin-top: 0px; }
+
+.exam-section h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+
+}
+
+.cards-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .exam-section {
+    margin-left: 0;
+  }
+}

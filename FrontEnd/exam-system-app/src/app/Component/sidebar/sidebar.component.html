@@ -1,0 +1,36 @@
+<!-- <div class="sidebar text-white p-3 bg-primary">
+    <h4 >Admin Dashboard</h4>
+    <a href="#" class="d-block text-white mb-2">Exams</a>
+    <a href="#" class="d-block text-white mb-2">Add Exam</a>
+    <a href="#" class="d-block text-white mb-2">Settings</a>
+    <a href="#" class="d-block text-white mb-2">Log Out</a>
+
+  </div>
+   -->
+   <div class="sidebar text-white p-3 bg-primary">
+    <h4>Admin Dashboard</h4>
+    <div class="links">
+      <a routerLink="/admin/dashboard" 
+         routerLinkActive="active" 
+         [routerLinkActiveOptions]="{exact: true}"
+         class="d-block text-white mb-2">
+        Dashboard
+      </a>
+      <a routerLink="/admin/exam-management" 
+         routerLinkActive="active" 
+         class="d-block text-white mb-2">
+        Exam Management
+      </a>
+      <a routerLink="/admin/student-results" 
+         routerLinkActive="active" 
+         class="d-block text-white mb-2">
+        Student Results
+      </a>
+      <a routerLink="/logout" 
+         routerLinkActive="active" 
+         class="d-block text-white mb-2 logout">
+        Log Out
+      </a>
+    </div>
+  </div>
+  
